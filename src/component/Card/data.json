@@ -1,0 +1,28 @@
+[
+    {
+      "title": "3D City Model",
+      "options": [
+        "Gebäude",
+        "Terrain",
+        "Bäume"
+      ]
+    },
+    {
+      "title": "Layers",
+      "options": [
+        "Kataster",
+        "Straßen",
+        "Fußwege",
+        "Grünflächen"
+      ]
+    },
+    {
+        "title": "Baurecht",
+        "options": [
+          "B-Plan",
+          "Denkmalschutz",
+          "Flächennutzungsplan"
+        ]
+      }
+
+  ]

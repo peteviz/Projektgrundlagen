@@ -1,0 +1,13 @@
+[
+    {
+      "title": "Export Options",
+      "options": [
+        "OBJ",
+        "USC",
+        "IFC",
+        "DGM(.xyz.gz)",
+        "GeoJSON (.geojson)"
+      ]
+    }
+
+  ]

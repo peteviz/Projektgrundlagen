@@ -1,0 +1,34 @@
+
+.Button {
+    width: 100%; /* Make the button take full width on smaller screens */
+    max-width: 214px; /* Limit the maximum width for larger screens */
+    height: 54px;
+    flex-shrink: 0;
+    background-color: #0060C0;
+    filter: drop-shadow(6px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 25px;
+    border: none;
+  }
+
+  /* Adjustments for larger screens */
+  @media screen and (min-width: 600px) {
+    .Button {
+      width: 214px; /* Restore the fixed width on larger screens */
+    }
+  }
+
+  .Button .rectangle {
+    display: none; /* Hide the rectangle by default */
+  }
+
+  /* Display the rectangle only on larger screens */
+  @media screen and (min-width: 600px) {
+    .Button .rectangle {
+      display: block;
+      height: 62px;
+      left: 0;
+      position: fixed;
+      top: 0;
+      width: 224px;
+    }
+  }

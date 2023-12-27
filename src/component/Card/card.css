@@ -1,0 +1,59 @@
+
+.card {
+    position: relative;
+    top: 5vh;
+    width: 80%;
+    max-width: 29.375rem;
+    margin: 0 auto;
+    border-radius: 25px;
+    background: #003E7B;
+    box-shadow: 3px 4px 6.5px 3px rgba(0, 0, 0, 0.25);
+    overflow: hidden; /* Ensure content does not overflow the card */
+  }
+
+  .cardContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    margin: 0;
+    padding: 1rem; /* Add padding to the content */
+  }
+
+  .cardTitle {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: rem;
+    width: 80%;
+    max-width: 348px;
+    height: 48px;
+    flex-shrink: 0;
+    color: #FFF;
+    text-shadow: 1px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Montserrat;
+    font-size: 1.86em;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    white-space: nowrap;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 0rem;
+    padding: 0.1rem;
+  }
+  .optionItem{
+    height: 5rem;
+  }
+
+  /* Media query for smaller screens */
+  @media screen and (max-width: 600px) {
+    .cardTitle {
+      font-size: 5vw;
+    }
+  }

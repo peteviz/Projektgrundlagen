@@ -23,6 +23,7 @@ interface FormValues {
   email: string;
   telefonnummer: string;
   company: string;
+  strassenAdresse: string;
   aptNr: string;
   state: string;
   postcode: string;
@@ -40,6 +41,7 @@ const initialValues: FormValues = {
   email: "",
   telefonnummer: "",
   company: "",
+  strassenAdresse: "",
   aptNr: "",
   state: "",
   postcode: "",
@@ -62,8 +64,6 @@ const validationSchema = Yup.object({
 });
 
 function App() {
-  const [emailResponseStatus, setEmailResponseStatus] = useState<"success" | "error" | null>(null);
-
   // State to track the current stage of the form
   const [currentStage, setCurrentStage] = useState(1);
 
@@ -118,39 +118,14 @@ function App() {
     if (currentStage === stages.CONTACT_DETAILS) {
       // If in the contact details stage, submit the form
       if (!back) {
-        formik.isValid = false;
         console.log("back Button clicked", back);
-        formik.submitForm();
       } else if (back) {
         setCurrentStage(4);
       }
       // handleReverseStage()
     } else if (currentStage === 5) {
-      // If in the final stage, send an email using emailjs
-      const templateParams = {
-        to_name: `${formValues.vorname} ${formValues.familienname}`,
-        from_name: "Urbanistic Team",
-        to_email: formValues.email,
-        city_model: formValues.cityModel.join(", "),
-        layers: formValues.layers.join(", "),
-        baurecht: formValues.baurecht.join(", "),
-        export_options: formValues.exportOptions.join(", "),
-      };
-
-      try {
-        const response = await emailjs.send(
-          "service_w2ss8e7",
-          "contct_form",
-          templateParams
-        );
-
-        console.log("Email sent successfully:", response);
-        setEmailResponseStatus("success");
-      } catch (error) {
-        console.error("Email failed to send:", error);
-                // Set email response status to error
-        setEmailResponseStatus("error");
-      }
+      // Redirect to urbaniistic homepage
+      window.location.href = "https://www.urbanistic.de";
     } else {
       // For other stages, simply move to the next stage
       handleNextStage();
@@ -167,9 +142,38 @@ function App() {
       case stages.CONTACT_DETAILS:
         return <ContactDetails />;
       case stages.SUCESS_PAGE:
-        return <SuccessPage message={"Thank You"}  emailResponseStatus={emailResponseStatus}/>;
+        return <SuccessPage />;
       default:
         return null;
+    }
+  };
+  const sendEmail = async (values: FormValues) => {
+    const templateParams = {
+      to_name: `${values.vorname} ${values.familienname}`,
+      from_name: "Urbanistic Team",
+      to_email: values.email,
+      city_model: values.cityModel.join(", "),
+      layers: values.layers.join(", "),
+      baurecht: values.baurecht.join(", "),
+      export_options: values.exportOptions.join(", "),
+    };
+
+    try {
+      const response = await emailjs.send(
+        "service_w2ss8e7",
+        "contct_form",
+        templateParams
+      );
+
+      console.log("Email sent successfully:", response);
+    } catch (error) {
+      console.error("Email failed to send:", error);
+      // Set email response status to error
+    }
+    if (back === false) {
+      handleNextStage();
+    } else {
+      setBack(false);
     }
   };
 
@@ -185,11 +189,7 @@ function App() {
         setFormValues(values);
         console.log("values are", values);
         console.log(formik);
-        if (back === false) {
-          handleNextStage();
-        } else {
-          setBack(false);
-        }
+        sendEmail(values);
       }}
       validationSchema={validationSchema}
     >

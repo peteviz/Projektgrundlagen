@@ -1,30 +1,19 @@
-import { FC } from "react";
 import "./SucessPage.css";
-
-interface SuccessPageProps {
-  message: string;
-    emailResponseStatus: string | null;
-}
+import colab from '../../../src/Assets/img/Collaboration.png'
 
 
 
-
-const SuccessPage: FC<SuccessPageProps> = ({ message, emailResponseStatus }) => {
+const SuccessPage = () => {
   return (
-    <div>
-        {emailResponseStatus === 'error' || emailResponseStatus === null? (
+    <div className="success-container">
+    <img src={colab} alt="success" className="success" />
 
-            <div className="lds-ripple">
-          <div></div>
-          <div></div>
-        </div>
-): (
-    "FetchData"
-)
-}
+    <p className="message-1">Thank You!</p>
+    <p className="message-2">A representative of Urbanistic would contact you.</p>
 
-      <p>{message}</p>
+
     </div>
+
   );
 };
 

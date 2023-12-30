@@ -1,6 +1,7 @@
 [
     {
       "title": "Export Options",
+      "name": "exportOptions",
       "options": [
         "OBJ",
         "USC",

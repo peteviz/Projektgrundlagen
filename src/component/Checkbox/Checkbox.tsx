@@ -1,15 +1,19 @@
 import './Checkbox.css'
+import {Field} from 'formik'
 interface CheckboxProps {
   label: string;
   handleCheckboxChange: (label: string) => void;
   checked: boolean;
+  title:string;
+  name:string;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ label, handleCheckboxChange, checked }) => {
+const Checkbox: React.FC<CheckboxProps> = ({ name, label, handleCheckboxChange, checked }) => {
   return (
     <div className="checkbox-wrapper-40">
-      <input type="checkbox" checked={checked} onChange={() => handleCheckboxChange(label)} />
-      <label> <span>{label}</span></label>
+
+      <Field name={name} value={label} type="checkbox" />
+      <label>{label}</label>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 [
     {
       "title": "3D City Model",
+      "name": "cityModel",
       "options": [
         "Gebäude",
         "Terrain",
@@ -9,6 +10,7 @@
     },
     {
       "title": "Layers",
+      "name": "layers",
       "options": [
         "Kataster",
         "Straßen",
@@ -18,6 +20,7 @@
     },
     {
         "title": "Baurecht",
+        "name": "baurecht",
         "options": [
           "B-Plan",
           "Denkmalschutz",

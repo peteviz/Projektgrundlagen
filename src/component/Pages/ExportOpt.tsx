@@ -1,25 +1,22 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../Card/Card";
-import expOpt from '../Card/exportOpt.json';
+import expOpt from "../Card/exportOpt.json";
 
 interface Service {
   title: string;
   options: string[];
+  name: string;
 }
 
 function ExportSelection(): JSX.Element {
-
   const [checkedOptions, setCheckedOptions] = useState<string[]>(() => {
-    const storedState = localStorage.getItem('checkedOptions');
+    const storedState = localStorage.getItem("checkedOptions");
     return storedState ? JSON.parse(storedState) : [];
   });
-  useEffect(()=>{
-    console.log('this is Selected Options', checkedOptions);
-  }, [checkedOptions]
-  );
+
   // Save the state to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem('checkedOptions', JSON.stringify(checkedOptions));
+    localStorage.setItem("checkedOptions", JSON.stringify(checkedOptions));
   }, [checkedOptions]);
   const handleCheckboxChange = (label: string): void => {
     setCheckedOptions((prevCheckedOptions) => {
@@ -32,12 +29,12 @@ function ExportSelection(): JSX.Element {
     });
   };
 
-
   return (
     <div>
-      <div className='cards'>
+      <div className="cards">
         {expOpt.map((item: Service, index: number) => (
           <Card
+            name={item.name}
             key={index}
             title={item.title}
             options={item.options}

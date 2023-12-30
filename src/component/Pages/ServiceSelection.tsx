@@ -7,22 +7,17 @@ import jsonData from '../Card/data.json';
 interface Service {
   title: string;
   options: string[];
+  name: string;
 }
 
-interface ServiceSelectionProps {
-  onOptionsChange: (selectedOptions: string[]) => void;
-}
 
-function ServiceSelection({ onOptionsChange }: ServiceSelectionProps): JSX.Element {
+
+function ServiceSelection(): JSX.Element {
 
   const [checkedOptions, setCheckedOptions] = useState<string[]>(() => {
     const storedState = localStorage.getItem('checkedOptions');
     return storedState ? JSON.parse(storedState) : [];
   });
-  useEffect(()=>{
-    console.log('this is Selected Options', checkedOptions);
-  }, [checkedOptions]
-  );
   // Save the state to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('checkedOptions', JSON.stringify(checkedOptions));
@@ -55,6 +50,7 @@ function ServiceSelection({ onOptionsChange }: ServiceSelectionProps): JSX.Eleme
       <div className='cards'>
         {jsonData.map((item: Service, index: number) => (
           <Card
+            name={item.name}
             key={index}
             title={item.title}
             options={item.options}

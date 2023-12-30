@@ -3,21 +3,28 @@
     --borderColor: #48c;
     --borderWidth: .125em;
     display: flex;
-    align-items: center;
+    align-items:center;
     margin-top: 5vh;
+    /* justify-content: flex-end; */
     /* margin-left:1rem; */
   }
 
   .checkbox-wrapper-40 label {
     display: flex;
     flex-direction: row;
+    width: 8rem;
     max-width: 100%;
-    margin: 0 auto;
+    margin: 0 1rem 0 auto;
+    justify-content: flex-end;
+    align-items: right;
+    /* overflow: hidden; */
+
   }
 .checkbox-wrapper-40 label span {
     text-align: right;
-    width: 9rem;
-    margin-left: 12vw;
+    width: fit-content;
+    margin-left: 8vw;
+    padding: 0;
 }
   .checkbox-wrapper-40 input[type=checkbox] {
     -webkit-appearance: none;

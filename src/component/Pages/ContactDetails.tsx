@@ -32,9 +32,9 @@ const ContactDetails: React.FC = () => {
         </div>
         <div className="field full-width">
           <Field name="company" placeholder="Company Name" />
-          {/* <div className="error">
+          <div className="error">
             <ErrorMessage name="company" component="span" />
-          </div> */}
+          </div>
         </div>
         <div className="field">
           <Field name="strassenAdresse" placeholder="Strassen-Adresse" />
@@ -52,13 +52,14 @@ const ContactDetails: React.FC = () => {
           <Field name="country" placeholder="Land" />
         </div>
         <div className="field full-width">
-          <label>
-            <Field type="checkbox" name="declaration" />I hereby declare that
+        <label>
+            <Field type="checkbox" name="Declaration" value='declaration' />
+            I hereby declare that
             all information given by me can be utilized.
           </label>
+
         </div>
-        {/* <button type="submit">Submit</button> */}
-        {/* </Form> */}
+
       </div>
     </div>
   );

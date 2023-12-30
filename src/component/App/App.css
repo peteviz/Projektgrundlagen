@@ -1,28 +1,39 @@
+/* General styling for the entire app */
 .App {
-  margin: 2rem;
+  margin: 1rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  /* margin-left: 12rem; */
+}
+.app-container{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: 10rem;
+
 }
 
 .cards {
-  margin: 2rem; /* Adjust margin for better spacing */
+  width: 80vw;
+  margin: 1rem;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap; /* Allow cards to wrap to the next line on smaller screens */
-  gap: 2rem; /* Set a default gap between cards */
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 2rem;
 }
 
 .Buttons {
-  display: flex;
   position: absolute;
+  top:80vh;
+  left:70vw;
+  display: flex;
+  width: 25rem;
   justify-content: space-between;
-  top: 75.5%;
-  left: 65.8%;
-  z-index: 10;
   gap: 1.5rem;
-  margin: 5rem 1rem; /* Adjust margin for better spacing on smaller screens */
+  margin: 2rem 1rem; /* Adjust margin for better spacing on smaller screens */
+  flex-direction: row;
+  height: 5rem;
 }
 
 Button {
@@ -30,50 +41,32 @@ Button {
   height: 2rem;
 }
 
-.placeHolderMap {
-  max-width: 100%; /* Ensure the map container takes the full width */
-  margin: 1vw 1vw 0 3vw;
-}
-
-.placeHolderMap img {
-  max-width: 100%; /* Ensure the image takes the full width of its container */
-}
-
-.placeHolderMap h1 {
-  text-align: center;
-}
-
-.info-page {
-  width: 100%; /* Make the info page take full width on smaller screens */
-  max-width: 400px;
-  margin: 2rem 1vw; /* Adjust margin for better spacing */
-}
-
-.info-page h1 {
-  text-align: center;
-  margin: 2rem auto; /* Adjust margin for better spacing */
-}
 
 /* Media query for smaller screens */
 @media screen and (max-width: 600px) {
   .cards {
-    flex-direction: column; /* Stack cards on smaller screens */
-    align-items: center; /* Center cards when stacked */
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; /* Adjust gap for smaller screens */
   }
 
   .cards > * {
-    width: 100%; /* Make each card take full width when stacked */
+    width: 100%;
   }
 
   .cards img {
-    margin-bottom: 1rem; /* Add a gap between images when stacked */
+    margin-bottom: 1rem;
+  }
+
+  .Buttons {
+    margin: 2rem 1rem;
   }
 }
 
-/* Adjustments for larger screens */
+/* Media query for larger screens */
 @media screen and (min-width: 600px) {
   .Buttons {
-    flex-direction: row-reverse; /* Revert to row-reverse on larger screens */
-    margin: 5rem 3.5rem; /* Restore the original margin on larger screens */
+    flex-direction: row-reverse;
+    margin: 2rem 3.5rem;
   }
 }

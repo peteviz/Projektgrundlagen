@@ -32,19 +32,6 @@ function ServiceSelection(): JSX.Element {
       }
     });
   };
-  // Clear localStorage on page refresh
-  // useEffect(() => {
-  //   const clearLocalStorageOnRefresh = (event: BeforeUnloadEvent) => {
-  //     localStorage.clear();
-  //     delete event.returnValue; // Standard for most browsers to prevent the prompt
-  //   };
-
-  //   window.addEventListener('beforeunload', clearLocalStorageOnRefresh);
-
-  //   return () => {
-  //     window.removeEventListener('beforeunload', clearLocalStorageOnRefresh);
-  //   };
-  // }, []);
   return (
     <div>
       <div className='cards'>

@@ -57,6 +57,7 @@ const ContactDetails: React.FC = () => {
             I hereby declare that
             all information given by me can be utilized.
           </label>
+          
 
         </div>
 

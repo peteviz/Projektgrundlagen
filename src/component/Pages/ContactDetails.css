@@ -4,6 +4,7 @@
     display: grid;
     place-items: center;
     height: 65vh; /* Center vertically in the viewport */
+    margin: 0;
   }
 
   Form{

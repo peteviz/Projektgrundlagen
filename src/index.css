@@ -1,7 +1,7 @@
 html, body {
   height: 100%;
   margin: 0;
-  overflow: hidden;
+  overflow: auto;
 }
 
 body {
@@ -11,18 +11,19 @@ body {
     sans-serif;
   position: relative;
   background: url('./LandingPage.png') center/cover no-repeat;
-  height: 100%;
+  min-height: 100vh;
+  margin: 0;
 
   /* Ensure proper overlay with gradient */
   &::before {
     content: "";
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     background: linear-gradient(65deg, #003F7D 2.17%, #051A3F 77.2%);
-    opacity: 0.8; /* Adjust the opacity as needed */
+    opacity: 0.8;
     z-index: -1;
   }
 
@@ -30,8 +31,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-

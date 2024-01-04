@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./App.css";
 import Stepper from "../CheckoutStages/CheckoutProcess";
 import ServiceSelection from "../Pages/ServiceSelection";
@@ -9,6 +9,9 @@ import { Formik, useFormik, Form, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import emailjs from "emailjs-com"; // Import emailjs library
 import SuccessPage from "../Pages/SucessPage";
+import ReCAPTCHA from "react-google-recaptcha";
+
+
 
 // Constants for different stages of the form
 const stages = {
@@ -69,13 +72,13 @@ function App() {
 
   const [back, setBack] = useState(false);
   // State to hold form values
-  const [formValues, setFormValues] = useState(initialValues);
+  // const [formValues, setFormValues] = useState(initialValues);
 
   // Formik hook for managing form state and validation
   const formik = useFormik({
     initialValues,
     onSubmit: (values) => {
-      setFormValues(values);
+      // setFormValues(values);
     },
     validationSchema,
     enableReinitialize: true,
@@ -118,6 +121,7 @@ function App() {
     if (currentStage === stages.CONTACT_DETAILS) {
       // If in the contact details stage, submit the form
       if (!back) {
+
         console.log("back Button clicked", back);
       } else if (back) {
         setCurrentStage(4);
@@ -131,7 +135,8 @@ function App() {
       handleNextStage();
     }
   };
-
+    // Ref for reCAPTCHA component
+    const recaptchaRef = useRef<ReCAPTCHA | null>(null);
   // Function to render the appropriate stage component
   const renderStageComponent = () => {
     switch (currentStage) {
@@ -181,42 +186,61 @@ function App() {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(
+      onSubmit={async(
         values: FormValues,
         { setSubmitting }: FormikHelpers<FormValues>
       ) => {
         setSubmitting(false);
-        setFormValues(values);
+        // setFormValues(values);
         console.log("values are", values);
         console.log(formik);
-        sendEmail(values);
+        // handle Google Recaptcha token request
+        if (recaptchaRef.current) {
+          const token = await recaptchaRef.current.executeAsync();
+          console.log("reCAPTCHA Token:", token);
+          sendEmail(values);
+        } else {
+          console.error("recaptchaRef.current is null");
+          // Handle the case where recaptchaRef.current is null
+        }
       }}
       validationSchema={validationSchema}
     >
       {() => (
-        <Form>
+        <Form id="form-details">
           <div className="app-container">
             <div className="App">
               {/* Component for displaying the current stage */}
               <Stepper currentStage={currentStage} />
               {renderStageComponent()}
             </div>
-            <div className="Buttons">
-              {/* Button for moving to the next stage or submitting the form */}
-              <Button
-                text={currentStage === 5 ? "Finish" : "Next"}
-                onClick={handleButtonClick}
-                type={
-                  currentStage === stages.CONTACT_DETAILS ? "submit" : "button"
-                }
-              />
-              {/* Button for moving to the previous stage */}
-              <Button
-                text="Back"
-                onClick={handleReverseStage}
-                disabled={currentStage === 1}
-              />
-            </div>
+            <footer>
+              <div className="Buttons">
+                {/* Button for moving to the next stage or submitting the form */}
+                <Button
+                  text={currentStage === 5 ? "Finish" : "Next"}
+                  onClick={handleButtonClick}
+                  type={
+                    currentStage === stages.CONTACT_DETAILS
+                      ? "submit"
+                      : "button"
+                  }
+                />
+                {/* Button for moving to the previous stage */}
+                <Button
+                  text="Back"
+                  onClick={handleReverseStage}
+                  disabled={currentStage === 1 || currentStage === 5}
+                  hidden={currentStage === 1 || currentStage === 5}
+                />
+                <ReCAPTCHA
+                  sitekey="6Ldh6UMpAAAAAN1niKW40jhp5m5FX7FkbMVf-3ak"
+                  size="invisible"
+                  ref={recaptchaRef}
+                />
+
+              </div>
+            </footer>
           </div>
         </Form>
       )}
